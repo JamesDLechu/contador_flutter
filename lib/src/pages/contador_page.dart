@@ -8,7 +8,7 @@ class ContadorPage extends StatefulWidget{
   }
 }
 
-class ContadorPageState extends State{
+class ContadorPageState extends State<ContadorPage>{
 
   final _estiloTexto= new TextStyle(fontSize: 25);
   int _contador= 0;

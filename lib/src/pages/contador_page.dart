@@ -32,11 +32,32 @@ class ContadorPageState extends State{
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => setState(() => _contador++),
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton: _crearBotones(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
+
+  Widget _crearBotones(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        SizedBox( width: 30.0, ),
+        //Reset
+        myFAB( icon: Icon(Icons.exposure_zero), value: 0 ),
+        Expanded(child: SizedBox( )),
+        //Sustract
+        myFAB( icon: Icon(Icons.remove), value: _contador - 1),
+        SizedBox( width: 5.0, ),
+        //Add
+        myFAB(icon: Icon(Icons.add), value: _contador + 1),
+        SizedBox( width: 5.0,)
+      ],
+    );
+  }
+
+  FloatingActionButton myFAB({Icon icon, int value}){
+    return FloatingActionButton(onPressed: () => setState(() => _contador= value),
+          child: icon,
+        );
+  } 
 }

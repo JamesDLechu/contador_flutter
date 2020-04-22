@@ -41,21 +41,21 @@ class ContadorPageState extends State<ContadorPage>{
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        SizedBox( width: 30.0, ),
+        SizedBox( width: 20.0, ),
         //Reset
-        myFAB( icon: Icon(Icons.exposure_zero), value: 0 ),
+        _customFAB( icon: Icon(Icons.exposure_zero), value: 0 ),
         Expanded(child: SizedBox( )),
         //Sustract
-        myFAB( icon: Icon(Icons.remove), value: _contador - 1),
+        _customFAB( icon: Icon(Icons.remove), value: _contador - 1),
         SizedBox( width: 5.0, ),
         //Add
-        myFAB(icon: Icon(Icons.add), value: _contador + 1),
+        _customFAB(icon: Icon(Icons.add), value: _contador + 1),
         SizedBox( width: 5.0,)
       ],
     );
   }
 
-  FloatingActionButton myFAB({Icon icon, int value}){
+  FloatingActionButton _customFAB({Icon icon, int value}){
     return FloatingActionButton(onPressed: () => setState(() => _contador= value),
           child: icon,
         );

@@ -1,34 +1,29 @@
+
 import 'package:flutter/material.dart';
 
 class ContadorPage extends StatefulWidget{
-  
   @override
-  createState(){
-    return ContadorPageState();
-  }
+  State<StatefulWidget> createState() => _ContadorState();
 }
 
-class ContadorPageState extends State<ContadorPage>{
-
-  final _estiloTexto= new TextStyle(fontSize: 25);
+class _ContadorState extends State<ContadorPage>{
+  
+  final style= new TextStyle(fontSize: 25);
   int _contador= 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stateful',
-        ),
+        title: Text('Un título'),
         centerTitle: true,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Número de clicks: ', style: _estiloTexto,
-            ),
-            Text('$_contador', style: _estiloTexto,
-            ),
+            Text('Número de clicks', style: style, ),
+            Text('$_contador', style: style, ),
           ],
         ),
       ),
@@ -41,23 +36,20 @@ class ContadorPageState extends State<ContadorPage>{
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        SizedBox( width: 20.0, ),
-        //Reset
-        _customFAB( icon: Icon(Icons.exposure_zero), value: 0 ),
-        Expanded(child: SizedBox( )),
-        //Sustract
-        _customFAB( icon: Icon(Icons.remove), value: _contador - 1),
+        SizedBox( width: 15.0, ),
+        FloatingActionButton( child: Icon(Icons.exposure_zero), onPressed: _reset, ),
+        Expanded(child: SizedBox()),
+        FloatingActionButton( child: Icon(Icons.remove), onPressed: _decrementa, ),
+        SizedBox( width: 5.0 ),
+        FloatingActionButton( child: Icon(Icons.add), onPressed: _incrementa, ),
         SizedBox( width: 5.0, ),
-        //Add
-        _customFAB(icon: Icon(Icons.add), value: _contador + 1),
-        SizedBox( width: 5.0,)
       ],
     );
   }
 
-  FloatingActionButton _customFAB({Icon icon, int value}){
-    return FloatingActionButton(onPressed: () => setState(() => _contador= value),
-          child: icon,
-        );
-  } 
+  void _incrementa() => setState( () => _contador++ );
+
+  void _decrementa() => setState( () => _contador-- );
+
+  void _reset() => setState( () => _contador= 0 );
 }
